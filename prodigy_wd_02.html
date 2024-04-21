@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+   <style>
+   
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: rgb(238,174,202);
+        background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%); 
+        background-size: 400% 400%;
+        animation: gradientAnimation 15s ease infinite;
+    }
+
+    @keyframes gradientAnimation {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+body {
+   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #807d7d;
+    color: aliceblue;
+    background-image:url("Redbubble.jpg");
+    background-size:cover;  
+}
+
+.stopwatch-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #434343;
+    padding: 2rem;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(114, 113, 113, 0.1);
+    background-image:url("acrylic painting.jpeg");
+    background-size: cover;
+   
+
+}
+
+.stopwatch-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.stopwatch-time {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.stopwatch-controls {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+button{
+    padding:25px;
+    margin: auto;
+    gap: 45px;
+    color: rgb(115, 132, 185);
+}
+.start-button,
+.pause-button,
+.reset-button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: #59638a;
+    color: #000000;
+    transition: background-color 0.2s ease-in-out;
+    
+}
+
+.start-button:hover,
+.pause-button:hover,
+.reset-button:hover {
+    background-color: rgb(185, 115, 129);
+}
+
+.hidden {
+    display: none;
+}
+   </style>
+</head>
+<body>
+    <div class="stopwatch-container">
+        <h1 class="stopwatch-title">Stopwatch</h1>
+        <div class="stopwatch-time">00:00:00</div>
+        <div class="stopwatch-controls">
+            <button class="start-button">Start</button>
+            <button class="pause-button">Pause</button>
+            <button class="reset-button">Reset</button>
+        </div>
+    </div>
+    <script>
+        const stopwatchTime = document.querySelector('.stopwatch-time');
+        const startButton = document.querySelector('.start-button');
+        const pauseButton = document.querySelector('.pause-button');
+        const resetButton = document.querySelector('.reset-button');
+        const stopwatchGif = document.getElementById('stopwatch-gif');
+
+        let stopwatchInterval;
+        let time = 0;
+        let lapNumber = 1;
+        let isStopwatchRunning = false;
+
+        function updateStopwatch() {
+            const hours = Math.floor(time / 3600);
+            const minutes = Math.floor((time % 3600) / 60);
+            const seconds = time % 60;
+            stopwatchTime.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        function startStopwatch() {
+            if (!isStopwatchRunning) {
+                stopwatchInterval = setInterval(() => {
+                    time++;
+                    updateStopwatch();
+                }, 1000);
+                isStopwatchRunning = true;
+                startButton.textContent = 'Stop';
+                
+            }
+        }
+
+        function pauseStopwatch() {
+            if (isStopwatchRunning) {
+                clearInterval(stopwatchInterval);
+                isStopwatchRunning = false;
+                startButton.textContent = 'Start';
+                
+            }
+        }
+
+        function resetStopwatch() {
+            clearInterval(stopwatchInterval);
+            time = 0;
+            isStopwatchRunning = false;
+            stopwatchTime.textContent = '00:00:00';
+            startButton.textContent = 'Start';
+           
+        }
+
+        startButton.addEventListener('click', () => {
+            if (isStopwatchRunning) {
+                pauseStopwatch();
+            } else {
+                startStopwatch();
+            }
+        });
+
+        pauseButton.addEventListener('click', pauseStopwatch);
+        resetButton.addEventListener('click', resetStopwatch);
+    </script>
+</body>
+</html>
