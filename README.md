@@ -13,11 +13,11 @@ The background features a dynamic gradient animation.
 The stopwatch container has a stylish design with a background image and a circular layout.
 Buttons have hover effects for user interaction.
 Files
-index.html: Contains the HTML structure of the Stopwatch web application.
-style.css: Defines the styling for the web application.
-script.js: Contains the JavaScript code for the stopwatch functionality.
+html file Contains the HTML structure of the Stopwatch web application.
+Defines the styling for the web application.
+ Contains the JavaScript code for the stopwatch functionality.
 How to Run
-Download all the files (index.html, style.css, script.js).
+Download all the files
 Open the index.html file in a web browser.
 Interact with the buttons to control the stopwatch.
 Credits
